@@ -1,101 +1,83 @@
 // eslint-disable-next-line no-unused-vars
 import { Navbar as BootstrapNavbar } from 'bootstrap';
-import {isAuthenticated } from '../../utils/auths';
-import logo from '../../img/logo.png';
-// import { options } from '../../../../api/routes/auths';
+import { getAuthenticatedUser, isAuthenticated } from '../../utils/auths';
 
-/**
- * Render the Navbar which is styled by using Bootstrap
- * Each item in the Navbar is tightly coupled with the Router configuration :
- * - the URI associated to a page shall be given in the attribute "data-uri" of the Navbar
- * - the router will show the Page associated to this URI when the user click on a nav-link
- */
+const SITE_NAME = 'yourSiteName';
 
 const Navbar = () => {
   renderNavbar();
 };
 
 function renderNavbar() {
+  const authenticatedUser = getAuthenticatedUser();
 
-  const navbarNoLog = `
-    <nav class="navbar navbar-expand-lg navbar-red navbar-dark">
-      <div class="wrapper"></div>
-      <div class="container-fluid all-show">
-        <a class="nav-link" aria-current="page" href="/" data-uri="/"><img class="logoImg" src="${logo}" width = "60" heigth = "35" atl ="logo" ></a>
+  const anonymousUserNavbar = `
+<nav class="navbar navbar-expand-lg navbar-light bg-info">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">${SITE_NAME}</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-  
-          <li class="nav-item">
-            <button class="dropbtn"><a class="nav-link" aria-current="page" href="#" data-uri="/">Home</a></button>
-          </li>
-
-          <li class="nav-item-Log">
-            <div class="dropdown">
-              <button class="dropbtn">Game</button>
-              <div class="dropdown-content">
-                <a class="nav-link" aria-current="page" href="#" data-uri="/blackJack">BlackJack</a>
-                <a class="nav-link" aria-current="page" href="#" data-uri="/roulette">Roulette</a>
-                <a class="nav-link" aria-current="page" href="#" data-uri="/slotMachine">Slot Machine</a>
-              </div>
-            </div>
-          </li>
-
-          <li class="nav-item-Prof">
-            <button class="dropbtn"><a class="nav-link" aria-current="page" href="#" data-uri="/profil">Profil</a></button>
-          </li>
-
-          <li class="nav-item-Log">
-            <button class="dropbtn"><a class="nav-link" aria-current="page" href="#" data-uri="/login">Login</a>
-          </li>
-        </ul>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#" data-uri="/">Home</a>
+            </li>      
+            <li id="loginItem" class="nav-item">
+              <a class="nav-link" href="#" data-uri="/login">Login</a>
+            </li>
+            <li id="registerItem" class="nav-item">
+              <a class="nav-link" href="#" data-uri="/register">Register</a>
+            </li>            
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-    `;
+    </nav>
+`;
 
-  const navbarLog = `
-    <nav class="navbar navbar-expand-lg navbar-red navbar-dark">
-      <div class="wrapper"></div>
-      <div class="container-fluid all-show">
-        <a class="nav-item" aria-current="page" href="/" data-uri="/">
-          <img class="logoImg" src="${logo}" width = "60" heigth = "35" atl ="logo" >
-        </a>
+  const authenticatedUserNavbar = `
+<nav class="navbar navbar-expand-lg navbar-light bg-info">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">myMovies</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-  
-          <li class="nav-item">
-            <button class="dropbtn"><a class="nav-link" aria-current="page" href="#" data-uri="/">Home</a></button>
-          </li>
-
-          <li class="nav-item">
-            <div class="dropdown">
-              <button class="dropbtn">Game</button>
-              <div class="dropdown-content">
-                <a class="nav-link" aria-current="page" href="#" data-uri="/blackJack">BlackJack</a>
-                <a class="nav-link" aria-current="page" href="#" data-uri="/roulette">Roulette</a>
-                <a class="nav-link" aria-current="page" href="#" data-uri="/slotMachine">Slot Machine</a>
-              </div>
-            </div>
-          </li>
-
-          <li class="nav-item-Prof">
-            <button class="dropbtn"><a class="nav-link" aria-current="page" href="#" data-uri="/profil">Profil</a></button>
-          </li>
-
-          <li class="nav-item-Log">
-            <button class="dropbtn"><a class="nav-link" aria-current="page" href="#" data-uri="/logout">Logout</a>
-          </li>
-        </ul>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#" data-uri="/">Home</a>
+            </li>            
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-uri="/logout">Logout</a>
+            </li>    
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">${authenticatedUser?.username}</a>
+            </li>           
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-    `;
+    </nav>
+`;
 
+  const navbar = document.querySelector('#navbarWrapper');
 
-    const navbarWrapper = document.querySelector('#navbarWrapper');
-
-    navbarWrapper.innerHTML = isAuthenticated() ? navbarLog : navbarNoLog;
-
+  navbar.innerHTML = isAuthenticated() ? authenticatedUserNavbar : anonymousUserNavbar;
 }
 
 export default Navbar;
