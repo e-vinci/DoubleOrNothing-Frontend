@@ -2,6 +2,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 const { merge } = require('webpack-merge');
 const base = require('./webpack.config.base');
+const PRODUCTION_PATH_PREFIX = '/DoubleOrNothing-Frontend/';
 
 module.exports = merge(base, {
   mode: 'production',
