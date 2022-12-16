@@ -6,13 +6,11 @@
  * has to import all the pages to render them.
  */
 
-import { usePathPrefix } from '../../utils/path-prefix';
-
 const Navigate = (toUri) => {
   const fromUri = window.location.pathname;
   if (fromUri === toUri) return;
 
-  window.history.pushState({}, '', usePathPrefix(toUri));
+  window.history.pushState({}, '', toUri);
   const popStateEvent = new PopStateEvent('popstate', { state: {} });
   dispatchEvent(popStateEvent);
 };
