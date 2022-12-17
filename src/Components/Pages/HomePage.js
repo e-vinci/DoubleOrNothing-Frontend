@@ -46,10 +46,10 @@ function rotate() {
   $('.slider').prepend(lastChild)
   $(lastChild).addClass('firstSlide')
 }
-/*
+
 window.setInterval(function(){
   rotate()
 }, 3000);
 (jQuery,rotate,window);
-*/
+
 export default Homepage;
