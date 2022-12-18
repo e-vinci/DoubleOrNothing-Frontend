@@ -8,7 +8,7 @@ import logo from '../../img/logo.png';
 
 const RegisterPage = () => {
   clearPage();
-  renderPageTitle('Register');
+  renderPageTitle('register');
   renderRegisterForm();
 };
 

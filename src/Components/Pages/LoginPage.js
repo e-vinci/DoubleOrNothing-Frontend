@@ -83,7 +83,7 @@ function renderLoginForm() {
   rightPart.className = 'col-md-8 col-xs-12 col-sm-12 login_form';
 
   const subtext = document.createElement('div');
-  subtext.innerHTML = '<p> Don\'t have an account? <a href="/register">Register Here</a></p>'
+  subtext.innerHTML = '<p> Don\'t have an account? <a class="nav-link" href="#" data-uri="/register" Register</a></p>'
 
   leftPart.appendChild(span);
   leftPart.appendChild(image);
