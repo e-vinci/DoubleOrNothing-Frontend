@@ -1,6 +1,7 @@
 /* eslint-disable */
-import $ from 'jquery';
+
 import jQuery from 'jquery';
+import $ from 'jquery';
 
 import image1 from '../../img/MenuCarousel/BlackJackMenuImg.png';
 import image2 from '../../img/MenuCarousel/SlotMachineMenuImg.png';

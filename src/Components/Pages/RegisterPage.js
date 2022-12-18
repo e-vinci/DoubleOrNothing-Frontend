@@ -111,7 +111,7 @@ function renderRegisterForm() {
   rightPart.className = 'col-md-8 col-xs-12 col-sm-12 login_form';
 
   const subtext = document.createElement('div');
-  subtext.innerHTML = '<p> I have an account <a href="/login">Login Here</a></p>'
+  subtext.innerHTML = '<p> I have an account <a href="login">Login Here</a></p>'
 
   leftPart.appendChild(span);
   leftPart.appendChild(image);
