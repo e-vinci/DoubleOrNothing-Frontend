@@ -9,11 +9,12 @@ import './stylesheets/slotmachine.css';
 import './stylesheets/leaderboard.css';
 
 import Navbar from './Components/Navbar/Navbar';
+import Homepage from './Components/Pages/HomePage';
 import Footer from './Components/Footer/Footer';
-import HomePage from './Components/Pages/HomePage';
 import Router from './Components/Router/Router';
 
-HomePage();
+Homepage();
 Navbar();
+
 Footer();
 Router();
